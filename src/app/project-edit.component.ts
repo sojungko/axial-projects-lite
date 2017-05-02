@@ -71,6 +71,7 @@ export class ProjectEditComponent {
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
+          console.log(this.formErrors[field]);
           this.formErrors[field] += messages[key] + ' ';
         }
       }
@@ -78,6 +79,7 @@ export class ProjectEditComponent {
   }
   
   isNumber(input: any) {
+    console.log(typeof input === "number")
     return typeof input === "number";
   }
 

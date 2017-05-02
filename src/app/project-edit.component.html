@@ -1,19 +1,22 @@
 <form *ngIf="project && !submitted" (ngSubmit)="onSubmit(projectForm)" #projectForm="ngForm">
   <div class="form-group">
     <label class="center-block">Headline: </label>
-    <input class="form-control" name="headline" [(ngModel)]="project.headline" placeholder="Headline">
+    <input class="form-control" name="headline" [(ngModel)]="project.headline" placeholder="Headline" required>
   </div>
+  <div *ngIf="formErrors.headline" class="alert alert-danger">
+    {{ formErrors.headline }}
+  </div>  
   <div class="form-group">
     <label class="center-block">Target Check Size Minimum: </label>
     <div class="input-group">
       <div class="input-group-addon">$</div>
-      <input class="form-control" shortcut name="target_check_size_min" #target_check_size_min [(ngModel)]="project.target_check_size_min"
+      <input class="form-control" shortcut name="target_check_size_min" [(ngModel)]="project.target_check_size_min"
         placeholder="Target Check Size Minimum">
     </div>
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>  
-    <div *ngIf="!isNumber(project.target_check_size_min)" class="alert alert-danger">
+    <div *ngIf="project.target_check_size_min && !isNumber(project.target_check_size_min)" class="alert alert-danger">
       Please enter a number
     </div>      
   </div>
@@ -26,7 +29,7 @@
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>  
-    <div *ngIf="!isNumber(project.target_check_size_max)" class="alert alert-danger">
+    <div *ngIf="project.target_check_size_max && !isNumber(project.target_check_size_max)" class="alert alert-danger">
       Please enter a number
     </div>     
   </div>
@@ -39,7 +42,7 @@
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
-    <div *ngIf="!isNumber(project.target_revenue_min)" class="alert alert-danger">
+    <div *ngIf="project.target_revenue_min && !isNumber(project.target_revenue_min)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -52,7 +55,7 @@
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
-    <div *ngIf="!isNumber(project.target_revenue_max)" class="alert alert-danger">
+    <div *ngIf="project.target_revenue_max && !isNumber(project.target_revenue_max)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -65,7 +68,7 @@
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
-    <div *ngIf="!isNumber(project.target_ebitda_min)" class="alert alert-danger">
+    <div *ngIf="project.target_ebitda_min && !isNumber(project.target_ebitda_min)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -78,7 +81,7 @@
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
-    <div *ngIf="!isNumber(project.target_ebitda_max)" class="alert alert-danger">
+    <div *ngIf="project.target_ebitda_max && !isNumber(project.target_ebitda_max)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>

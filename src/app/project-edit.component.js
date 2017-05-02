@@ -74,12 +74,14 @@ var ProjectEditComponent = (function () {
             if (control && control.dirty && !control.valid) {
                 var messages = this.validationMessages[field];
                 for (var key in control.errors) {
+                    console.log(this.formErrors[field]);
                     this.formErrors[field] += messages[key] + ' ';
                 }
             }
         }
     };
     ProjectEditComponent.prototype.isNumber = function (input) {
+        console.log(typeof input === "number");
         return typeof input === "number";
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
