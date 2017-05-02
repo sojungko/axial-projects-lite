@@ -16,12 +16,12 @@ var ShortCutDirective = (function () {
     }
     ShortCutDirective.prototype.onInputChange = function ($event) {
         var input = $event.target.value.split('');
-        var lastLetter = input[input.length - 1];
-        if (lastLetter === 'k' || lastLetter === 'K') {
-            lastLetter = '000';
+        var last = input.length - 1;
+        if (input[last] === 'k' || input[last] === 'K') {
+            input[last] = '000';
         }
-        if (lastLetter === 'm' || lastLetter === 'M') {
-            lastLetter = '000000';
+        if (input[last] === 'm' || input[last] === 'M') {
+            input[last] = '000000';
         }
         input = Number(input.join(''));
         if (isNaN(input)) {
@@ -38,7 +38,7 @@ __decorate([
 ], ShortCutDirective.prototype, "ngModelChange", void 0);
 ShortCutDirective = __decorate([
     core_1.Directive({
-        selector: '[ngModel][shortcut]',
+        selector: '[ngModel][[shortcut]',
         host: {
             "(input)": 'onInputChange($event)'
         }

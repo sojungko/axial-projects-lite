@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Output, Input, EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: '[ngModel][shortcut]',
+  selector: '[ngModel][[shortcut]',
   host: {
     "(input)": 'onInputChange($event)'
   }
@@ -15,12 +15,12 @@ export class ShortCutDirective {
 
   onInputChange($event: any) {
     let input = $event.target.value.split('');
-    let lastLetter = input[input.length - 1]
-    if (lastLetter === 'k' || lastLetter === 'K') {
-      lastLetter = '000';
+    let last = input.length - 1;
+    if (input[last] === 'k' || input[last] === 'K') {
+      input[last] = '000';
     }
-    if (lastLetter === 'm' || lastLetter === 'M') {
-      lastLetter = '000000';
+    if (input[last] === 'm' || input[last] === 'M') {
+      input[last] = '000000';
     }
     input = Number(input.join(''));
     if (isNaN(input)) {
@@ -30,3 +30,4 @@ export class ShortCutDirective {
     this.ngModelChange.emit(this.value);
   }
 }
+
