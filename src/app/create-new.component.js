@@ -77,6 +77,12 @@ var CreateNewComponent = (function () {
         }
         return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
     };
+    CreateNewComponent.prototype.allNumber = function (input) {
+        return input.every(function (element) {
+            console.log(element);
+            return !element.value || typeof element.value === "number";
+        });
+    };
     CreateNewComponent.prototype.disableButton = function () {
         if (this.projectForm) {
             var form = this.projectForm.form.controls;
@@ -87,12 +93,21 @@ var CreateNewComponent = (function () {
             var revenue_max = form.target_revenue_max;
             var ebitda_min = form.target_ebitda_min;
             var ebitda_max = form.target_ebitda_max;
+            var dirty = [];
+            for (var field in form) {
+                if (field !== 'headline') {
+                    dirty.push(form[field]);
+                }
+            }
             var headlineInvalid = !headline.value || headline.value.length === 0;
             var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
             if (!headline.value || headline.value.length === 0) {
                 return true;
             }
             if (minMaxFail) {
+                return true;
+            }
+            if (!this.allNumber(dirty)) {
                 return true;
             }
             return false;

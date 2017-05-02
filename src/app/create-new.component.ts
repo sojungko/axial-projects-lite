@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormControl, FormGroup, AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 
 import { ProjectService } from './project.service';
@@ -85,7 +85,14 @@ export class CreateNewComponent {
       return min.value > max.value;
     }
     return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
-  }  
+  }
+
+  allNumber(input: Array<any>) {
+    return input.every((element: any) => {
+      console.log(element);
+      return !element.value || typeof element.value === "number"
+    });
+  }
 
   disableButton() {
     if (this.projectForm) {
@@ -97,13 +104,21 @@ export class CreateNewComponent {
       const revenue_max = form.target_revenue_max;
       const ebitda_min = form.target_ebitda_min;
       const ebitda_max = form.target_ebitda_max;
-      
+      let dirty = [];
+      for (let field in form) {
+        if (field !== 'headline') {
+          dirty.push(form[field]);
+        }
+      }
       const headlineInvalid = !headline.value || headline.value.length === 0;
       const minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
       if (!headline.value || headline.value.length === 0) {
         return true;
       }
       if (minMaxFail) {
+        return true;
+      }
+      if (!this.allNumber(dirty)) {
         return true;
       }
       return false;
