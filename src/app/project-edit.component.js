@@ -121,7 +121,7 @@ var ProjectEditComponent = (function () {
             }
             return minNumber > maxNumber;
         }
-        return min && max;
+        return min && !max || !min && max;
     };
     ProjectEditComponent.prototype.allNumber = function (input) {
         var _this = this;

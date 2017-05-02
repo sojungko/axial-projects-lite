@@ -118,7 +118,7 @@ export class ProjectEditComponent {
       }
       return minNumber > maxNumber;
     }
-    return min && max;
+    return min && !max || !min && max;
   }
 
   allNumber(input: Array<any>) {
