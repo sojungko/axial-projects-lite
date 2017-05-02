@@ -10,8 +10,6 @@ npm start
 
 The app should run on `localhost:3000` in your browser.
 
-If for whatever reason you run into a problem such as one saying `[0] src/app/create-new.component.ts(113,35): error TS2339: Property 'target_check_size_min' does not exist on type '{ [key: string]: AbstractControl; }'.`, please comment out the `disableButton()` function in `create-new.component.ts`, restart the app and uncomment `disableButton()`. The validation should work hence forward. I am still not sure why this problem exists -- my guess is that it has to do with the way ngForm is initialized. I shall try to debug this when I figure out the problem.
-
 ## Comments
 For this challenge, I decided to use Angular 2 to prepare myself for the tech stack used at Axial. In-memory-web-api was implemented to simulate database connection. 
 
