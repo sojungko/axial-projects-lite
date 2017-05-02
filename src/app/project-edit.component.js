@@ -39,6 +39,15 @@ var ProjectEditComponent = (function () {
             _this.submit.emit(true);
         });
     };
+    ProjectEditComponent.prototype.isNumber = function (input) {
+        return typeof input === "number";
+    };
+    ProjectEditComponent.prototype.isDirty = function (input) {
+        if (this.projectForm) {
+            var field = this.projectForm.controls[input];
+            return field.dirty;
+        }
+    };
     return ProjectEditComponent;
 }());
 __decorate([

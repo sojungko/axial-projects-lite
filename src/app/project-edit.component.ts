@@ -17,6 +17,8 @@ export class ProjectEditComponent {
     private location: Location
   ) { }
 
+  projectForm: NgForm;
+  
   @Input() project: Project;
   @Input() submitted: boolean;
   @Output() submit = new EventEmitter();
@@ -31,4 +33,16 @@ export class ProjectEditComponent {
         this.submit.emit(true);
       });
   }
+
+  isNumber(input: any) {
+    return typeof input === "number";
+  }
+
+  isDirty(input: any) {
+    if (this.projectForm) {
+      const field = this.projectForm.controls[input];
+      return field.dirty;
+    }
+  }
+  
 }
