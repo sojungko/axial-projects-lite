@@ -80,12 +80,10 @@ var ProjectEditComponent = (function () {
         }
     };
     ProjectEditComponent.prototype.isNumber = function (input) {
-        console.log(typeof input);
         return typeof input === "number";
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
         if (this.projectForm) {
-            console.log(this.projectForm.controls);
             var field = this.projectForm.controls[input];
             return field && field.dirty;
         }
@@ -97,8 +95,10 @@ var ProjectEditComponent = (function () {
         return min && max;
     };
     ProjectEditComponent.prototype.allNumber = function (input) {
+        var _this = this;
         return input.every(function (element) {
-            return !element || typeof element === "number";
+            console.log(typeof element);
+            return _this.isNumber(element);
         });
     };
     ProjectEditComponent.prototype.disableButton = function () {
@@ -116,6 +116,7 @@ var ProjectEditComponent = (function () {
                 dirty.push(project[field]);
             }
         }
+        console.log(dirty);
         var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
         if (!headline || headline.length === 0) {
             return true;
