@@ -108,14 +108,14 @@ export class CreateNewComponent {
 
   disableButton() {
     if (this.projectForm) {
-      const form = this.projectForm.form;
-      const headline = form.get('headline');
-      const check_size_min = form.get('target_check_size_min');
-      const check_size_max = form.get('target_check_size_max');
-      const revenue_min = form.get('target_revenue_min');
-      const revenue_max = form.get('target_revenue_max');
-      const ebitda_min = form.get('target_ebitda_min');
-      const ebitda_max = form.get('target_ebitda_max');
+      const form = this.projectForm.form.controls;
+      const headline = form.headline;
+      const check_size_min = form.target_check_size_min;
+      const check_size_max = form.target_check_size_max;
+      const revenue_min = form.target_revenue_min;
+      const revenue_max = form.target_revenue_max;
+      const ebitda_min = form.target_ebitda_min;
+      const ebitda_max = form.target_ebitda_max;
       let dirty = [];
       for (let field in form) {
         if (field !== 'headline') {
