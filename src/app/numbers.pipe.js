@@ -11,11 +11,14 @@ var CommaSeparatedNumberPipe = (function () {
     }
     CommaSeparatedNumberPipe.prototype.transform = function (args) {
         if (args) {
+            /* -- Remove commas from input -- */
             args = String(args).split(',').join('');
             if (!isNaN(args)) {
+                /* -- If args is number, format it --*/
                 var formatted = Number(args).toLocaleString();
                 return formatted;
             }
+            /* -- If args is not number, return empty string --*/
             return '';
         }
     };

@@ -15,14 +15,17 @@ var ShortCutDirective = (function () {
         this.ngModelChange = new core_1.EventEmitter();
     }
     ShortCutDirective.prototype.onInputChange = function ($event) {
+        /* -- Turn input into array for easy manipulation --*/
         var input = $event.target.value.split('');
         var last = input.length - 1;
+        /* -- Convert k or m into corresponding 0's --*/
         if (input[last] === 'k' || input[last] === 'K') {
             input[last] = '000';
         }
         if (input[last] === 'm' || input[last] === 'M') {
             input[last] = '000000';
         }
+        /* -- Join array to produce string --*/
         input = input.join('');
         this.value = input;
         this.ngModelChange.emit(this.value);

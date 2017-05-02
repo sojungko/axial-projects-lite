@@ -82,12 +82,14 @@ var ProjectEditComponent = (function () {
     ProjectEditComponent.prototype.isNumber = function (input) {
         return !(/[^0-9,.]/g).test(input);
     };
+    /* -- Used to render error when either min or max is not filled --*/
     ProjectEditComponent.prototype.isDirty = function (input) {
         if (this.projectForm) {
             var field = this.projectForm.controls[input];
             return field && field.dirty;
         }
     };
+    /* -- Used to render error when min > max --*/
     ProjectEditComponent.prototype.minMaxBalance = function (min, max) {
         if (min && max) {
             if (typeof min === "string") {
@@ -105,6 +107,7 @@ var ProjectEditComponent = (function () {
             return minNumber > maxNumber;
         }
     };
+    /* -- Used to disable button if min > max or either field empty --*/
     ProjectEditComponent.prototype.minMaxControl = function (min, max) {
         if (min && max) {
             if (typeof min === "string") {
@@ -123,6 +126,7 @@ var ProjectEditComponent = (function () {
         }
         return min && !max || !min && max;
     };
+    /* -- Used to disable button if form contains non-number --*/
     ProjectEditComponent.prototype.allNumber = function (input) {
         var _this = this;
         return input.every(function (element) {

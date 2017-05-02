@@ -67,6 +67,7 @@ export class CreateNewComponent {
     return !(/[^0-9,.]/g).test(input);
   }
 
+  /* -- Used to render error when either min or max is not filled -- */
   isDirty(input: any) {
     if (this.projectForm) {
       const field = this.projectForm.controls[input];
@@ -74,6 +75,7 @@ export class CreateNewComponent {
     }
   }
 
+  /* -- Used to render error when min > max --*/
   minMaxBalance(min: any, max: any) {
     if (min && max) {
       const minNumber = Number(min.split(',').join(''));
@@ -82,16 +84,19 @@ export class CreateNewComponent {
     }    
   }
   
+
   minMaxControl(min: any, max: any) {
-    /* -- disable button if min > max or one field is empty -- */
+    /* -- disable button if min > max -- */
     if (min.value && max.value) {
       const minNumber = Number(min.value.split(',').join(''));
       const maxNumber = Number(max.value.split(',').join(''));
       return minNumber > maxNumber;
     }
+    /* -- disable button if one field is empty --*/
     return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
   }
 
+  /* -- disables button if input contains non-number --*/  
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
       if (element.value) {
@@ -119,6 +124,7 @@ export class CreateNewComponent {
       }
       const headlineInvalid = !headline.value || headline.value.length === 0;
       const minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
+      /* -- headline is required --*/
       if (!headline.value || headline.value.length === 0) {
         return true;
       }
