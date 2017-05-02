@@ -8,7 +8,7 @@ npm install
 npm start
 ```
 
-The app should now be running on `localhost:3000` in your browser.
+The app should run on `localhost:3000` in your browser.
 
 ## Comments
 For this challenge, I decided to use Angular 2 to prepare myself for the tech stack used at Axial. In-memory-web-api was implemented to simulate database connection. 
@@ -19,6 +19,6 @@ Number formatting posed another challenge. To insert commas, I realized I had to
 
 Although it would have been ideal to have my CreateNew and ProjectEdit components share one template, with the time constraints I had, I decided it would be prudent to keep them separate to manage their logics separately.
 
-This challenge was definitely a steep learning curve but a fun experience. If given more time, I would like to render the edit form in modal, as doing so would yield more room to display projects. I would also address the state mutation problem that exists between the Projects and ProjectEdit components. Overall, however, I am happy with the way this app turned out, considering my limited experience with Angular 2.
+This challenge was definitely a steep learning curve but a fun experience. If given more time, I would like to render the edit form in modal, as doing so would yield more room to display projects. I would also address the state mutation problem that exists between the Projects and ProjectEdit components. Overall, I am happy with the way this app turned out, considering my limited experience with Angular 2.
 
 Thank you for giving me the opportunity to take this challenge. I hope this README clarifies the process in which I created this app. I look forward to your feedback!
