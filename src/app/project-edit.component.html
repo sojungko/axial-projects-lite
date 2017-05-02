@@ -13,7 +13,7 @@
       <input class="form-control" shortcut name="target_check_size_min" [ngModel]="project.target_check_size_min | commaSeparatedNumber" (ngModelChange)="project.target_check_size_min=$event"
         placeholder="Target Check Size Minimum">
     </div>
-    <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_check_size_min, project.target_check_size_max)" class="alert alert-danger">
       Cannot surpass maximum
     </div>  
     <div *ngIf="project.target_check_size_min && !isNumber(project.target_check_size_min)" class="alert alert-danger">
@@ -26,7 +26,7 @@
       <div class="input-group-addon">$</div>
       <input class="form-control" shortcut name="target_check_size_max" [ngModel]="project.target_check_size_max | commaSeparatedNumber" (ngModelChange)="project.target_check_size_max=$event" placeholder="Target Check Size Maximum">
     </div>
-    <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_check_size_min, project.target_check_size_max)" class="alert alert-danger">
       Cannot be less than minimum
     </div>  
     <div *ngIf="project.target_check_size_max && !isNumber(project.target_check_size_max)" class="alert alert-danger">
@@ -39,7 +39,7 @@
       <div class="input-group-addon">$</div>
       <input class="form-control" shortcut name="target_revenue_min" [ngModel]="project.target_revenue_min | commaSeparatedNumber" (ngModelChange)="project.target_revenue_min=$event" placeholder="Target Revenue Minimum">
     </div>
-    <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_revenue_min, project.target_revenue_max)" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
     <div *ngIf="project.target_revenue_min && !isNumber(project.target_revenue_min)" class="alert alert-danger">
@@ -52,7 +52,7 @@
       <div class="input-group-addon">$</div>
       <input class="form-control" shortcut name="target_revenue_max" [ngModel]="project.target_revenue_max | commaSeparatedNumber" (ngModelChange)="project.target_revenue_max=$event" placeholder="Target Revenue Maximum">
     </div>
-    <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_revenue_min, project.target_revenue_max)" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
     <div *ngIf="project.target_revenue_max && !isNumber(project.target_revenue_max)" class="alert alert-danger">
@@ -65,7 +65,7 @@
       <div class="input-group-addon">$</div>
       <input class="form-control" shortcut name="target_ebitda_min" [ngModel]="project.target_ebitda_min | commaSeparatedNumber" (ngModelChange)="project.target_ebitda_min=$event" placeholder="Target EBITDA Minimum">
     </div>
-    <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_ebitda_min, project.target_ebitda_max)" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
     <div *ngIf="project.target_ebitda_min && !isNumber(project.target_ebitda_min)" class="alert alert-danger">
@@ -78,7 +78,7 @@
       <div class="input-group-addon">$</div>
       <input class="form-control" shortcut name="target_ebitda_max" [ngModel]="project.target_ebitda_max | commaSeparatedNumber" (ngModelChange)="project.target_ebitda_max=$event" placeholder="Target EBITDA Maximum">
     </div>
-    <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
+    <div *ngIf="minMaxBalance(project.target_ebitda_min, project.target_ebitda_max)" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
     <div *ngIf="project.target_ebitda_max && !isNumber(project.target_ebitda_max)" class="alert alert-danger">

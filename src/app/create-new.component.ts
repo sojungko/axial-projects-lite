@@ -94,7 +94,6 @@ export class CreateNewComponent {
 
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
-      console.log(element.value);
       if (element.value) {
         var numberified = Number(element.value.split(',').join(''));
       }

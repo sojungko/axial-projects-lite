@@ -83,7 +83,6 @@ var CreateNewComponent = (function () {
     };
     CreateNewComponent.prototype.allNumber = function (input) {
         return input.every(function (element) {
-            console.log(element.value);
             if (element.value) {
                 var numberified = Number(element.value.split(',').join(''));
             }

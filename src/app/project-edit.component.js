@@ -88,9 +88,38 @@ var ProjectEditComponent = (function () {
             return field && field.dirty;
         }
     };
+    ProjectEditComponent.prototype.minMaxBalance = function (min, max) {
+        if (min && max) {
+            if (typeof min === "string") {
+                var minNumber = Number(min.split(',').join(''));
+            }
+            else {
+                minNumber = min;
+            }
+            if (typeof max === "string") {
+                var maxNumber = Number(max.split(',').join(''));
+            }
+            else {
+                maxNumber = max;
+            }
+            return minNumber > maxNumber;
+        }
+    };
     ProjectEditComponent.prototype.minMaxControl = function (min, max) {
         if (min && max) {
-            return min > max;
+            if (typeof min === "string") {
+                var minNumber = Number(min.split(',').join(''));
+            }
+            else {
+                minNumber = min;
+            }
+            if (typeof max === "string") {
+                var maxNumber = Number(max.split(',').join(''));
+            }
+            else {
+                maxNumber = max;
+            }
+            return minNumber > maxNumber;
         }
         return min && max;
     };

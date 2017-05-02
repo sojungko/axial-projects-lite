@@ -88,9 +88,35 @@ export class ProjectEditComponent {
     }
   }
 
+  minMaxBalance(min: any, max: any) {
+    if (min && max) {
+      if (typeof min === "string") {
+        var minNumber = Number(min.split(',').join(''));
+      } else {
+        minNumber = min;
+      }
+      if (typeof max === "string") {
+        var maxNumber = Number(max.split(',').join(''));
+      } else {
+        maxNumber = max;
+      }
+      return minNumber > maxNumber;      
+    }
+  }
+
   minMaxControl(min: any, max: any) {
     if (min && max) {
-      return min > max;
+      if (typeof min === "string") {
+        var minNumber = Number(min.split(',').join(''));
+      } else {
+        minNumber = min;
+      }
+      if (typeof max === "string") {
+        var maxNumber = Number(max.split(',').join(''));
+      } else {
+        maxNumber = max;
+      }
+      return minNumber > maxNumber;
     }
     return min && max;
   }
