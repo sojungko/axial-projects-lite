@@ -16,11 +16,12 @@ var ShortCutDirective = (function () {
     }
     ShortCutDirective.prototype.onInputChange = function ($event) {
         var input = $event.target.value.split('');
-        if (input[input.length - 1] === 'k') {
-            input[input.length - 1] = '000';
+        var lastLetter = input[input.length - 1];
+        if (lastLetter === 'k' || lastLetter === 'K') {
+            lastLetter = '000';
         }
-        if (input[input.length - 1] === 'm') {
-            input[input.length - 1] = '000000';
+        if (lastLetter === 'm' || lastLetter === 'M') {
+            lastLetter = '000000';
         }
         input = Number(input.join(''));
         if (isNaN(input)) {

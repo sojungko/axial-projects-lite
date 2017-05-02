@@ -15,11 +15,12 @@ export class ShortCutDirective {
 
   onInputChange($event: any) {
     let input = $event.target.value.split('');
-    if (input[input.length - 1] === 'k') {
-      input[input.length - 1] = '000';
+    let lastLetter = input[input.length - 1]
+    if (lastLetter === 'k' || lastLetter === 'K') {
+      lastLetter = '000';
     }
-    if (input[input.length - 1] === 'm') {
-      input[input.length - 1] = '000000';
+    if (lastLetter === 'm' || lastLetter === 'M') {
+      lastLetter = '000000';
     }
     input = Number(input.join(''));
     if (isNaN(input)) {
@@ -29,4 +30,3 @@ export class ShortCutDirective {
     this.ngModelChange.emit(this.value);
   }
 }
-

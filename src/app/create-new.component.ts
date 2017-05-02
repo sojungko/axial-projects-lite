@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl, FormGroup } from '@angular/forms';
 
 import { ProjectService } from './project.service';
 import { Project } from './project';
@@ -15,6 +15,7 @@ export class CreateNewComponent {
   projectForm: NgForm;
 
   formErrors = {
+    'headline': '',
     'target_check_size_min': '',
     'target_check_size_max': '',
     'target_revenue_min': '',
@@ -24,6 +25,9 @@ export class CreateNewComponent {
   };
 
   validationMessages = {
+    'headline': {
+      'required': 'Required'
+    },
     'target_check_size_min': {
       'max': 'Cannot exceed maximum',
       'required': 'Required'
@@ -32,6 +36,7 @@ export class CreateNewComponent {
 
   @ViewChild('projectForm') currentForm: NgForm;
 
+  
   constructor(
     private projectService: ProjectService,
     private router: Router,
@@ -68,8 +73,8 @@ export class CreateNewComponent {
         }
       }
     }
-  }
-  
+  }  
+
   onSubmit(projectForm: NgForm): void {
     console.log(projectForm.value);
     this.projectService.create(projectForm.value)

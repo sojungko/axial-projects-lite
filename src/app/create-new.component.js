@@ -17,6 +17,7 @@ var CreateNewComponent = (function () {
         this.projectService = projectService;
         this.router = router;
         this.formErrors = {
+            'headline': '',
             'target_check_size_min': '',
             'target_check_size_max': '',
             'target_revenue_min': '',
@@ -25,6 +26,9 @@ var CreateNewComponent = (function () {
             'target_ebitda_max': '',
         };
         this.validationMessages = {
+            'headline': {
+                'required': 'Required'
+            },
             'target_check_size_min': {
                 'max': 'Cannot exceed maximum',
                 'required': 'Required'
