@@ -74,9 +74,19 @@ export class CreateNewComponent {
     }
   }
 
+  minMaxBalance(min: any, max: any) {
+    if (min && max) {
+      const minNumber = Number(min.split(',').join(''));
+      const maxNumber = Number(max.split(',').join(''));
+      return minNumber > maxNumber;
+    }    
+  }
+  
   minMaxControl(min: any, max: any) {
     if (min.value && max.value) {
-      return min.value > max.value;
+      const minNumber = Number(min.value.split(',').join(''));
+      const maxNumber = Number(max.value.split(',').join(''));
+      return minNumber > maxNumber;
     }
     return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
   }

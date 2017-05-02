@@ -71,7 +71,6 @@ export class ProjectEditComponent {
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
-          console.log(this.formErrors[field]);
           this.formErrors[field] += messages[key] + ' ';
         }
       }
@@ -98,7 +97,6 @@ export class ProjectEditComponent {
 
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
-      console.log(typeof element);
       return this.isNumber(element);
     });
   }
@@ -118,7 +116,6 @@ export class ProjectEditComponent {
         dirty.push(project[field]);
       }
     }
-    console.log(dirty);
     const minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
     if (!headline || headline.length === 0) {
       return true;

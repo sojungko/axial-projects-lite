@@ -74,7 +74,6 @@ var ProjectEditComponent = (function () {
             if (control && control.dirty && !control.valid) {
                 var messages = this.validationMessages[field];
                 for (var key in control.errors) {
-                    console.log(this.formErrors[field]);
                     this.formErrors[field] += messages[key] + ' ';
                 }
             }
@@ -98,7 +97,6 @@ var ProjectEditComponent = (function () {
     ProjectEditComponent.prototype.allNumber = function (input) {
         var _this = this;
         return input.every(function (element) {
-            console.log(typeof element);
             return _this.isNumber(element);
         });
     };
@@ -117,7 +115,6 @@ var ProjectEditComponent = (function () {
                 dirty.push(project[field]);
             }
         }
-        console.log(dirty);
         var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
         if (!headline || headline.length === 0) {
             return true;

@@ -65,9 +65,18 @@ var CreateNewComponent = (function () {
             return field.dirty;
         }
     };
+    CreateNewComponent.prototype.minMaxBalance = function (min, max) {
+        if (min && max) {
+            var minNumber = Number(min.split(',').join(''));
+            var maxNumber = Number(max.split(',').join(''));
+            return minNumber > maxNumber;
+        }
+    };
     CreateNewComponent.prototype.minMaxControl = function (min, max) {
         if (min.value && max.value) {
-            return min.value > max.value;
+            var minNumber = Number(min.value.split(',').join(''));
+            var maxNumber = Number(max.value.split(',').join(''));
+            return minNumber > maxNumber;
         }
         return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
     };
