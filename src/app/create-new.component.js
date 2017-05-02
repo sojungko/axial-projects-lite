@@ -29,10 +29,6 @@ var CreateNewComponent = (function () {
             'headline': {
                 'required': 'Required'
             },
-            'target_check_size_min': {
-                'max': 'Cannot exceed maximum',
-                'required': 'Required'
-            },
         };
     }
     CreateNewComponent.prototype.ngAfterViewChecked = function () {
@@ -43,8 +39,6 @@ var CreateNewComponent = (function () {
         if (this.currentForm === this.projectForm) {
             return;
         }
-        console.log('this.currentForm : ', this.currentForm);
-        console.log('this.projectForm: ', this.projectForm);
         this.projectForm = this.currentForm;
         if (this.projectForm) {
             this.projectForm.valueChanges
