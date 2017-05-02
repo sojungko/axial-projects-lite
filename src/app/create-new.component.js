@@ -62,6 +62,15 @@ var CreateNewComponent = (function () {
             }
         }
     };
+    CreateNewComponent.prototype.isNumber = function (input) {
+        return typeof input === "number";
+    };
+    CreateNewComponent.prototype.isDirty = function (input) {
+        if (this.projectForm) {
+            var field = this.projectForm.controls[input];
+            return field.dirty;
+        }
+    };
     CreateNewComponent.prototype.onSubmit = function (projectForm) {
         var _this = this;
         console.log(projectForm.value);

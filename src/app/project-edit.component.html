@@ -12,7 +12,10 @@
     </div>
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot surpass maximum
-    </div>    
+    </div>  
+    <div *ngIf="isDirty('target_check_size_min') && !isNumber(target_check_size_min)" class="alert alert-danger">
+      Please enter a number
+    </div>      
   </div>
   <div class="form-group">
     <label class="center-block">Target Check Size Maximum: </label>
@@ -22,7 +25,10 @@
     </div>
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot be less than minimum
-    </div>    
+    </div>  
+    <div *ngIf="isDirty('target_check_size_max') && !isNumber(target_check_size_max)" class="alert alert-danger">
+      Please enter a number
+    </div>     
   </div>
   <div class="form-group">
     <label class="center-block">Target Revenue Minimum: </label>
@@ -32,6 +38,9 @@
     </div>
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot surpass maximum
+    </div>    
+    <div *ngIf="isDirty('target_revenue_min') && !isNumber(target_revenue_min)" class="alert alert-danger">
+      Please enter a number
     </div>    
   </div>
   <div class="form-group">
@@ -43,6 +52,9 @@
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
+    <div *ngIf="isDirty('target_revenue_max') && !isNumber(target_revenue_max)" class="alert alert-danger">
+      Please enter a number
+    </div>    
   </div>
   <div class="form-group">
     <label class="center-block">Target EBITDA Minimum: </label>
@@ -53,6 +65,9 @@
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
+    <div *ngIf="isDirty('target_ebitda_min') && !isNumber(target_ebitda_min)" class="alert alert-danger">
+      Please enter a number
+    </div>    
   </div>
   <div class="form-group">
     <label class="center-block">Target EBITDA Maximum: </label>
@@ -62,6 +77,9 @@
     </div>
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot be less than minimum
+    </div>    
+    <div *ngIf="isDirty('target_ebitda_max') && !isNumber(target_ebitda_max)" class="alert alert-danger">
+      Please enter a number
     </div>    
   </div>
   <button type="submit" class="btn btn-success">Submit</button>

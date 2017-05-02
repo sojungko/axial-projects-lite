@@ -66,7 +66,18 @@ export class CreateNewComponent {
         }
       }
     }
-  }  
+  }
+
+  isNumber(input: any) {
+    return typeof input === "number";
+  }
+
+  isDirty(input: any) {
+    if (this.projectForm) {
+      const field = this.projectForm.controls[input];
+      return field.dirty;
+    }
+  }
 
   onSubmit(projectForm: NgForm): void {
     console.log(projectForm.value);

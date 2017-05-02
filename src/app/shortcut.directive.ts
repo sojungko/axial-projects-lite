@@ -24,7 +24,7 @@ export class ShortCutDirective {
     }
     input = Number(input.join(''));
     if (isNaN(input)) {
-      input = 0;
+      input = '';
     }
     this.value = input;
     this.ngModelChange.emit(this.value);
