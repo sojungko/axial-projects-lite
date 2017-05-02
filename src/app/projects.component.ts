@@ -56,7 +56,6 @@ export class ProjectsComponent implements OnInit{
   }
   
   delete(project: Project): void {
-    console.log(project);
     this.projectService.delete(project.id)
       .then(() => {
         this.projects = this.projects.filter(proj => proj.id !== project.id);

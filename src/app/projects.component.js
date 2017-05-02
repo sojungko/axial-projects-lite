@@ -32,7 +32,6 @@ var ProjectsComponent = (function () {
     };
     ProjectsComponent.prototype.delete = function (project) {
         var _this = this;
-        console.log(project);
         this.projectService.delete(project.id)
             .then(function () {
             _this.projects = _this.projects.filter(function (proj) { return proj.id !== project.id; });
