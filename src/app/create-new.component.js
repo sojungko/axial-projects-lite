@@ -57,7 +57,7 @@ var CreateNewComponent = (function () {
         }
     };
     CreateNewComponent.prototype.isNumber = function (input) {
-        return typeof input === "number";
+        return !(/[^0-9,.]/g).test(input);
     };
     CreateNewComponent.prototype.isDirty = function (input) {
         if (this.projectForm) {

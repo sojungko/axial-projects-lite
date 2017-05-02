@@ -79,8 +79,7 @@ export class ProjectEditComponent {
   }
   
   isNumber(input: any) {
-    console.log(typeof input === "number")
-    return typeof input === "number";
+    return !(/[^0-9,.]/g).test(input);
   }
 
   isDirty(input: any) {

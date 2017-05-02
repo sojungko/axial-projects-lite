@@ -12,10 +12,11 @@ var CommaSeparatedNumberPipe = (function () {
     CommaSeparatedNumberPipe.prototype.transform = function (args) {
         if (args) {
             args = String(args).split(',').join('');
-            console.log(args);
-            var formatted = Number(args).toLocaleString();
-            console.log(formatted);
-            return formatted;
+            if (!isNaN(args)) {
+                var formatted = Number(args).toLocaleString();
+                return formatted;
+            }
+            return '';
         }
     };
     return CommaSeparatedNumberPipe;

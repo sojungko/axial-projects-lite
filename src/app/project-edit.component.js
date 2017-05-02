@@ -81,8 +81,7 @@ var ProjectEditComponent = (function () {
         }
     };
     ProjectEditComponent.prototype.isNumber = function (input) {
-        console.log(typeof input === "number");
-        return typeof input === "number";
+        return !(/[^0-9,.]/g).test(input);
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
         if (this.projectForm) {

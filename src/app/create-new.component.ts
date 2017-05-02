@@ -64,7 +64,7 @@ export class CreateNewComponent {
   }
 
   isNumber(input: any) {
-    return typeof input === "number";
+    return !(/[^0-9,.]/g).test(input);
   }
 
   isDirty(input: any) {
