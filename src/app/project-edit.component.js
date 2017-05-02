@@ -85,51 +85,48 @@ var ProjectEditComponent = (function () {
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
         if (this.projectForm) {
+            console.log(this.projectForm.controls);
             var field = this.projectForm.controls[input];
-            return field.dirty;
+            return field && field.dirty;
         }
     };
     ProjectEditComponent.prototype.minMaxControl = function (min, max) {
-        if (min.value && max.value) {
-            return min.value > max.value;
+        if (min && max) {
+            return min > max;
         }
-        return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+        return min && max;
     };
     ProjectEditComponent.prototype.allNumber = function (input) {
         return input.every(function (element) {
-            return !element.value || typeof element.value === "number";
+            return !element || typeof element === "number";
         });
     };
     ProjectEditComponent.prototype.disableButton = function () {
-        if (this.projectForm) {
-            console.log(this.projectForm);
-            var form = this.projectForm.form.controls;
-            var headline = form.headline;
-            var check_size_min = form.target_check_size_min;
-            var check_size_max = form.target_check_size_max;
-            var revenue_min = form.target_revenue_min;
-            var revenue_max = form.target_revenue_max;
-            var ebitda_min = form.target_ebitda_min;
-            var ebitda_max = form.target_ebitda_max;
-            var dirty = [];
-            for (var field in form) {
-                if (field !== 'headline') {
-                    dirty.push(form[field]);
-                }
+        var project = this.project;
+        var headline = project.headline;
+        var check_size_min = project.target_check_size_min;
+        var check_size_max = project.target_check_size_max;
+        var revenue_min = project.target_revenue_min;
+        var revenue_max = project.target_revenue_max;
+        var ebitda_min = project.target_ebitda_min;
+        var ebitda_max = project.target_ebitda_max;
+        var dirty = [];
+        for (var field in project) {
+            if (field !== 'headline') {
+                dirty.push(project[field]);
             }
-            var headlineInvalid = !headline.value || headline.value.length === 0;
-            var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
-            if (!headline.value || headline.value.length === 0) {
-                return true;
-            }
-            if (minMaxFail) {
-                return true;
-            }
-            if (!this.allNumber(dirty)) {
-                return true;
-            }
-            return false;
         }
+        var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
+        if (!headline || headline.length === 0) {
+            return true;
+        }
+        if (minMaxFail) {
+            return true;
+        }
+        if (!this.allNumber(dirty)) {
+            return true;
+        }
+        return false;
     };
     return ProjectEditComponent;
 }());
