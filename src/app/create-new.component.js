@@ -24,6 +24,7 @@ var CreateNewComponent = (function () {
                 'required': 'Required'
             },
         };
+        this.projectForm = null;
     }
     CreateNewComponent.prototype.ngAfterViewChecked = function () {
         this.formChanged();
@@ -95,14 +96,14 @@ var CreateNewComponent = (function () {
     };
     CreateNewComponent.prototype.disableButton = function () {
         if (this.projectForm) {
-            var form = this.projectForm.form.controls;
-            var headline = form.headline;
-            var check_size_min = form.target_check_size_min;
-            var check_size_max = form.target_check_size_max;
-            var revenue_min = form.target_revenue_min;
-            var revenue_max = form.target_revenue_max;
-            var ebitda_min = form.target_ebitda_min;
-            var ebitda_max = form.target_ebitda_max;
+            var form = this.projectForm.form;
+            var headline = form.get('headline');
+            var check_size_min = form.get('target_check_size_min');
+            var check_size_max = form.get('target_check_size_max');
+            var revenue_min = form.get('target_revenue_min');
+            var revenue_max = form.get('target_revenue_max');
+            var ebitda_min = form.get('target_ebitda_min');
+            var ebitda_max = form.get('target_ebitda_max');
             var dirty = [];
             for (var field in form) {
                 if (field !== 'headline') {
