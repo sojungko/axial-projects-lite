@@ -18,12 +18,6 @@ var CreateNewComponent = (function () {
         this.router = router;
         this.formErrors = {
             'headline': '',
-            'target_check_size_min': '',
-            'target_check_size_max': '',
-            'target_revenue_min': '',
-            'target_revenue_max': '',
-            'target_ebitda_min': '',
-            'target_ebitda_max': '',
         };
         this.validationMessages = {
             'headline': {
@@ -79,7 +73,6 @@ var CreateNewComponent = (function () {
     };
     CreateNewComponent.prototype.allNumber = function (input) {
         return input.every(function (element) {
-            console.log(element);
             return !element.value || typeof element.value === "number";
         });
     };

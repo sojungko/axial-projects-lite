@@ -17,12 +17,6 @@ export class CreateNewComponent {
 
   formErrors = {
     'headline': '',
-    'target_check_size_min': '',
-    'target_check_size_max': '',
-    'target_revenue_min': '',
-    'target_revenue_max': '',
-    'target_ebitda_min': '',
-    'target_ebitda_max': '',
   };
 
   validationMessages = {
@@ -89,7 +83,6 @@ export class CreateNewComponent {
 
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
-      console.log(element);
       return !element.value || typeof element.value === "number"
     });
   }

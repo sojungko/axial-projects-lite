@@ -31,12 +31,6 @@ var ProjectEditComponent = (function () {
         this.update = new core_1.EventEmitter();
         this.formErrors = {
             'headline': '',
-            'target_check_size_min': '',
-            'target_check_size_max': '',
-            'target_revenue_min': '',
-            'target_revenue_max': '',
-            'target_ebitda_min': '',
-            'target_ebitda_max': '',
         };
         this.validationMessages = {
             'headline': {
@@ -90,10 +84,51 @@ var ProjectEditComponent = (function () {
         return typeof input === "number";
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
-        console.log(this.projectForm.controls);
         if (this.projectForm) {
             var field = this.projectForm.controls[input];
             return field.dirty;
+        }
+    };
+    ProjectEditComponent.prototype.minMaxControl = function (min, max) {
+        if (min.value && max.value) {
+            return min.value > max.value;
+        }
+        return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+    };
+    ProjectEditComponent.prototype.allNumber = function (input) {
+        return input.every(function (element) {
+            return !element.value || typeof element.value === "number";
+        });
+    };
+    ProjectEditComponent.prototype.disableButton = function () {
+        if (this.projectForm) {
+            console.log(this.projectForm);
+            var form = this.projectForm.form.controls;
+            var headline = form.headline;
+            var check_size_min = form.target_check_size_min;
+            var check_size_max = form.target_check_size_max;
+            var revenue_min = form.target_revenue_min;
+            var revenue_max = form.target_revenue_max;
+            var ebitda_min = form.target_ebitda_min;
+            var ebitda_max = form.target_ebitda_max;
+            var dirty = [];
+            for (var field in form) {
+                if (field !== 'headline') {
+                    dirty.push(form[field]);
+                }
+            }
+            var headlineInvalid = !headline.value || headline.value.length === 0;
+            var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
+            if (!headline.value || headline.value.length === 0) {
+                return true;
+            }
+            if (minMaxFail) {
+                return true;
+            }
+            if (!this.allNumber(dirty)) {
+                return true;
+            }
+            return false;
         }
     };
     return ProjectEditComponent;
