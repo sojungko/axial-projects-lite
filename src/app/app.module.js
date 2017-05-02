@@ -18,6 +18,7 @@ var create_new_component_1 = require("./create-new.component");
 var projects_component_1 = require("./projects.component");
 var project_edit_component_1 = require("./project-edit.component");
 var shortcut_directive_1 = require("./shortcut.directive");
+var numbers_pipe_1 = require("./numbers.pipe");
 var routes = [
     { path: '', redirectTo: '/projects', pathMatch: 'full' },
     { path: 'projects', component: projects_component_1.ProjectsComponent },
@@ -44,6 +45,7 @@ AppModule = __decorate([
             projects_component_1.ProjectsComponent,
             project_edit_component_1.ProjectEditComponent,
             shortcut_directive_1.ShortCutDirective,
+            numbers_pipe_1.CommaSeparatedNumberPipe
         ],
         providers: [project_service_1.ProjectService],
         bootstrap: [app_component_1.AppComponent]

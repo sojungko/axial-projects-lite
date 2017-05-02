@@ -10,12 +10,12 @@ import { Project } from './project';
       <ul *ngFor="let project of projects" class="list-group">
         <li class="list-group-item">ID: {{project.id}}</li>
         <li class="list-group-item">Headline: {{project.headline}}</li>
-        <li class="list-group-item">Target Check Size Minimum: {{project.target_check_size_min}}</li>
-        <li class="list-group-item">Target Check Size Maximum: {{project.target_check_size_max}}</li>
-        <li class="list-group-item">Target Revenue Minimum: {{project.target_revenue_min}}</li>
-        <li class="list-group-item">Target Revenue Maximum: {{project.target_revenue_max}}</li>
-        <li class="list-group-item">Target EBIDTA Minimum: {{project.target_ebitda_min}}</li>
-        <li class="list-group-item">Target EBIDTA Maximum: {{project.target_ebitda_max}}</li>
+        <li class="list-group-item">Target Check Size Minimum: {{project.target_check_size_min | commaSeparatedNumber }}</li>
+        <li class="list-group-item">Target Check Size Maximum: {{project.target_check_size_max | commaSeparatedNumber}}</li>
+        <li class="list-group-item">Target Revenue Minimum: {{project.target_revenue_min | commaSeparatedNumber}}</li>
+        <li class="list-group-item">Target Revenue Maximum: {{project.target_revenue_max | commaSeparatedNumber}}</li>
+        <li class="list-group-item">Target EBIDTA Minimum: {{project.target_ebitda_min | commaSeparatedNumber}}</li>
+        <li class="list-group-item">Target EBIDTA Maximum: {{project.target_ebitda_max | commaSeparatedNumber}}</li>
         <button (click)="onSelect(project)" class="btn btn-primary" >Edit</button>
         <button (click)="delete(project); $event.stopPropagation()" class="btn btn-primary">Delete</button>
     </ul>

@@ -13,6 +13,7 @@ import { CreateNewComponent } from './create-new.component';
 import { ProjectsComponent } from './projects.component';
 import { ProjectEditComponent } from './project-edit.component';
 import { ShortCutDirective } from './shortcut.directive';
+import { CommaSeparatedNumberPipe } from './numbers.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
     ProjectsComponent,
     ProjectEditComponent,
     ShortCutDirective,
+    CommaSeparatedNumberPipe
   ],
   providers: [ ProjectService ],
   bootstrap:    [ AppComponent ]

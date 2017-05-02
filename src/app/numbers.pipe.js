@@ -10,8 +10,11 @@ var CommaSeparatedNumberPipe = (function () {
     function CommaSeparatedNumberPipe() {
     }
     CommaSeparatedNumberPipe.prototype.transform = function (args) {
-        console.log('args : ', args);
-        return args;
+        if (args) {
+            args = Number(args);
+            var formatted = args.toLocaleString();
+            return formatted;
+        }
     };
     return CommaSeparatedNumberPipe;
 }());
