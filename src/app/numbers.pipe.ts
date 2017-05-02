@@ -4,8 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CommaSeparatedNumberPipe implements PipeTransform {
   transform(args: any): any {
     if (args) {
-      args = Number(args);
-      let formatted = args.toLocaleString();
+      args = String(args).split(',').join('');
+      console.log(args);
+      let formatted = Number(args).toLocaleString();
+      console.log(formatted);
       return formatted;
     }
   }

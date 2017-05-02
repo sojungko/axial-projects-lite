@@ -23,10 +23,7 @@ var ShortCutDirective = (function () {
         if (input[last] === 'm' || input[last] === 'M') {
             input[last] = '000000';
         }
-        input = Number(input.join(''));
-        if (isNaN(input)) {
-            input = '';
-        }
+        input = input.join('');
         this.value = input;
         this.ngModelChange.emit(this.value);
     };
