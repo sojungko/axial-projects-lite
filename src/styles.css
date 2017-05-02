@@ -1,0 +1,43 @@
+body {
+  font-family: 'Roboto'
+}
+
+.container-fluid {
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Abel', Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 250%;
+  position: center;
+}
+nav {
+  margin: 10px;
+}
+.projects-container {
+  width: 700px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.projects {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 10px;
+}
+.projects-edit {
+  width: 400px;
+}
+
+.create-new {
+  width: 700px;
+}
+
+.btn {
+  margin: 7px;
+}

@@ -1,0 +1,58 @@
+<form (ngSubmit)="onSubmit(projectForm)" #projectForm="ngForm" class="create-new">
+  <div class="form-group">
+    <label class="sr-only">Headline: </label>
+    <input class="form-control" name="headline" [(ngModel)]="headline" placeholder="Headline">
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target Check Size Minimum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input max="{{target_check_size_max}}" class="form-control" name="target_check_size_min" [(ngModel)]="target_check_size_min" placeholder="Target Check Size Minimum" shortcut>
+      <div *ngIf="formErrors.target_check_size_min" class="alert alert-danger">
+        {{ formErrors.target_check_size_min }}
+      </div>        
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target Check Size Maximum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input class="form-control" name="target_check_size_max" [(ngModel)]="target_check_size_max" placeholder="Target Check Size Maximum"
+        shortcut min="target_check_size_min">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target Revenue Minimum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input class="form-control" name="target_revenue_min" [(ngModel)]="target_revenue_min" placeholder="Target Revenue Minimum"
+        shortcut max="target_revenue_max">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target Revenue Maximum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input class="form-control" name="target_revenue_max" [(ngModel)]="target_revenue_max" placeholder="Target Revenue Maximum"
+        shortcut min="target_revenue_min">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target EBITDA Minimum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input class="form-control" name="target_ebitda_min" [(ngModel)]="target_ebitda_min" placeholder="Target EBITDA Minimum"
+        shortcut max="target_ebitda_max">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="sr-only">Target EBITDA Maximum: </label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input class="form-control" name="target_ebitda_max" [(ngModel)]="target_ebitda_max" placeholder="Target EBITDA Maximum"
+        shortcut min="target_ebitda_min">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!projectForm.form.valid">Submit</button>
+  <button (click)="goBack()" class="btn btn-default">Back</button>
+</form>
