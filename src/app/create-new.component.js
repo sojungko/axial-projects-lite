@@ -71,9 +71,35 @@ var CreateNewComponent = (function () {
             return field.dirty;
         }
     };
+    CreateNewComponent.prototype.minMaxControl = function (min, max) {
+        if (min.value && max.value) {
+            return min.value > max.value;
+        }
+        return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+    };
+    CreateNewComponent.prototype.disableButton = function () {
+        if (this.projectForm) {
+            var form = this.projectForm.form.controls;
+            var headline = form.headline;
+            var check_size_min = form.target_check_size_min;
+            var check_size_max = form.target_check_size_max;
+            var revenue_min = form.target_revenue_min;
+            var revenue_max = form.target_revenue_max;
+            var ebitda_min = form.target_ebitda_min;
+            var ebitda_max = form.target_ebitda_max;
+            var headlineInvalid = !headline.value || headline.value.length === 0;
+            var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
+            if (!headline.value || headline.value.length === 0) {
+                return true;
+            }
+            if (minMaxFail) {
+                return true;
+            }
+            return false;
+        }
+    };
     CreateNewComponent.prototype.onSubmit = function (projectForm) {
         var _this = this;
-        console.log(projectForm.value);
         this.projectService.create(projectForm.value)
             .then(function () { return _this.goBack(); });
     };

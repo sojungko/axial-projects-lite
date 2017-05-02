@@ -17,6 +17,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var forms_1 = require("@angular/forms");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var project_service_1 = require("./project.service");
@@ -28,6 +29,20 @@ var ProjectEditComponent = (function () {
         this.location = location;
         this.submit = new core_1.EventEmitter();
         this.update = new core_1.EventEmitter();
+        this.formErrors = {
+            'headline': '',
+            'target_check_size_min': '',
+            'target_check_size_max': '',
+            'target_revenue_min': '',
+            'target_revenue_max': '',
+            'target_ebitda_min': '',
+            'target_ebitda_max': '',
+        };
+        this.validationMessages = {
+            'headline': {
+                'required': 'Required'
+            },
+        };
     }
     ProjectEditComponent.prototype.onSubmit = function (projectForm) {
         var _this = this;
@@ -39,10 +54,43 @@ var ProjectEditComponent = (function () {
             _this.submit.emit(true);
         });
     };
+    ProjectEditComponent.prototype.ngAfterViewChecked = function () {
+        this.formChanged();
+    };
+    ProjectEditComponent.prototype.formChanged = function () {
+        var _this = this;
+        if (this.currentForm === this.projectForm) {
+            return;
+        }
+        this.projectForm = this.currentForm;
+        if (this.projectForm) {
+            this.projectForm.valueChanges
+                .subscribe(function (data) { return _this.onValueChanged(data); });
+        }
+    };
+    ProjectEditComponent.prototype.onValueChanged = function (data) {
+        if (!this.projectForm) {
+            return;
+        }
+        var form = this.projectForm.form;
+        for (var field in this.formErrors) {
+            // clear previous error message (if any)
+            this.formErrors[field] = '';
+            var control = form.get(field);
+            if (control && control.dirty && !control.valid) {
+                var messages = this.validationMessages[field];
+                for (var key in control.errors) {
+                    this.formErrors[field] += messages[key] + ' ';
+                }
+            }
+        }
+    };
     ProjectEditComponent.prototype.isNumber = function (input) {
+        console.log(typeof input);
         return typeof input === "number";
     };
     ProjectEditComponent.prototype.isDirty = function (input) {
+        console.log(this.projectForm.controls);
         if (this.projectForm) {
             var field = this.projectForm.controls[input];
             return field.dirty;
@@ -50,6 +98,10 @@ var ProjectEditComponent = (function () {
     };
     return ProjectEditComponent;
 }());
+__decorate([
+    core_1.ViewChild('projectForm'),
+    __metadata("design:type", forms_1.NgForm)
+], ProjectEditComponent.prototype, "currentForm", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", project_1.Project)

@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormControl, FormGroup } from '@angular/forms';
+import { NgForm, FormControl, FormGroup, AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators } from '@angular/forms';
+
 
 import { ProjectService } from './project.service';
 import { Project } from './project';
@@ -79,8 +80,37 @@ export class CreateNewComponent {
     }
   }
 
+  minMaxControl(min: any, max: any) {
+    if (min.value && max.value) {
+      return min.value > max.value;
+    }
+    return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+  }  
+
+  disableButton() {
+    if (this.projectForm) {
+      const form = this.projectForm.form.controls;
+      const headline = form.headline;
+      const check_size_min = form.target_check_size_min;
+      const check_size_max = form.target_check_size_max;
+      const revenue_min = form.target_revenue_min;
+      const revenue_max = form.target_revenue_max;
+      const ebitda_min = form.target_ebitda_min;
+      const ebitda_max = form.target_ebitda_max;
+      
+      const headlineInvalid = !headline.value || headline.value.length === 0;
+      const minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
+      if (!headline.value || headline.value.length === 0) {
+        return true;
+      }
+      if (minMaxFail) {
+        return true;
+      }
+      return false;
+    }
+  }
+
   onSubmit(projectForm: NgForm): void {
-    console.log(projectForm.value);
     this.projectService.create(projectForm.value)
       .then(() => this.goBack())
   }

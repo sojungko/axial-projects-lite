@@ -13,7 +13,7 @@
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>  
-    <div *ngIf="isDirty('target_check_size_min') && !isNumber(target_check_size_min)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_check_size_min') && !isNumber(project.target_check_size_min)" class="alert alert-danger">
       Please enter a number
     </div>      
   </div>
@@ -26,7 +26,7 @@
     <div *ngIf="project.target_check_size_min > project.target_check_size_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>  
-    <div *ngIf="isDirty('target_check_size_max') && !isNumber(target_check_size_max)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_check_size_max') && !isNumber(project.target_check_size_max)" class="alert alert-danger">
       Please enter a number
     </div>     
   </div>
@@ -39,7 +39,7 @@
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
-    <div *ngIf="isDirty('target_revenue_min') && !isNumber(target_revenue_min)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_revenue_min') && !isNumber(project.target_revenue_min)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -52,7 +52,7 @@
     <div *ngIf="project.target_revenue_min > project.target_revenue_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
-    <div *ngIf="isDirty('target_revenue_max') && !isNumber(target_revenue_max)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_revenue_max') && !isNumber(project.target_revenue_max)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -65,7 +65,7 @@
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot surpass maximum
     </div>    
-    <div *ngIf="isDirty('target_ebitda_min') && !isNumber(target_ebitda_min)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_ebitda_min') && !isNumber(project.target_ebitda_min)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>
@@ -78,7 +78,7 @@
     <div *ngIf="project.target_ebitda_min > project.target_ebitda_max" class="alert alert-danger">
       Cannot be less than minimum
     </div>    
-    <div *ngIf="isDirty('target_ebitda_max') && !isNumber(target_ebitda_max)" class="alert alert-danger">
+    <div *ngIf="isDirty('project.target_ebitda_max') && !isNumber(project.target_ebitda_max)" class="alert alert-danger">
       Please enter a number
     </div>    
   </div>

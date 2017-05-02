@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Output, Input, EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: '[ngModel][[shortcut]',
+  selector: '[ngModel][shortcut]',
   host: {
     "(input)": 'onInputChange($event)'
   }

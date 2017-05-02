@@ -38,7 +38,7 @@ __decorate([
 ], ShortCutDirective.prototype, "ngModelChange", void 0);
 ShortCutDirective = __decorate([
     core_1.Directive({
-        selector: '[ngModel][[shortcut]',
+        selector: '[ngModel][shortcut]',
         host: {
             "(input)": 'onInputChange($event)'
         }
