@@ -73,6 +73,7 @@ var CreateNewComponent = (function () {
         }
     };
     CreateNewComponent.prototype.minMaxControl = function (min, max) {
+        /* -- disable button if min > max or one field is empty -- */
         if (min.value && max.value) {
             var minNumber = Number(min.value.split(',').join(''));
             var maxNumber = Number(max.value.split(',').join(''));
@@ -82,7 +83,11 @@ var CreateNewComponent = (function () {
     };
     CreateNewComponent.prototype.allNumber = function (input) {
         return input.every(function (element) {
-            return !element.value || typeof element.value === "number";
+            console.log(element.value);
+            if (element.value) {
+                var numberified = Number(element.value.split(',').join(''));
+            }
+            return !element.value || !isNaN(numberified);
         });
     };
     CreateNewComponent.prototype.disableButton = function () {

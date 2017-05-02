@@ -83,6 +83,7 @@ export class CreateNewComponent {
   }
   
   minMaxControl(min: any, max: any) {
+    /* -- disable button if min > max or one field is empty -- */
     if (min.value && max.value) {
       const minNumber = Number(min.value.split(',').join(''));
       const maxNumber = Number(max.value.split(',').join(''));
@@ -93,7 +94,11 @@ export class CreateNewComponent {
 
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
-      return !element.value || typeof element.value === "number"
+      console.log(element.value);
+      if (element.value) {
+        var numberified = Number(element.value.split(',').join(''));
+      }
+      return !element.value || !isNaN(numberified);
     });
   }
 

@@ -51,7 +51,7 @@
     <label class="sr-only">Target Revenue Maximum: </label>
     <div class="input-group">
       <div class="input-group-addon">$</div>
-      <input class="form-control" name="target_revenue_max" [ngModel]="target_revenue_max | commaSeparatedNumber" (ngModelChange)="target_check_size_min=$event" placeholder="Target Revenue Maximum"
+      <input class="form-control" name="target_revenue_max" [ngModel]="target_revenue_max | commaSeparatedNumber" (ngModelChange)="target_revenue_max=$event" placeholder="Target Revenue Maximum"
         shortcut min="target_revenue_min">
     </div>
     <div *ngIf="minMaxBalance(target_revenue_min, target_revenue_max)" class="alert alert-danger">
