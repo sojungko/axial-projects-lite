@@ -77,43 +77,43 @@ var CreateNewComponent = (function () {
     };
     CreateNewComponent.prototype.minMaxControl = function (min, max) {
         /* -- disable button if min > max -- */
-        if (min.value && max.value) {
-            var minNumber = Number(min.value.split(',').join(''));
-            var maxNumber = Number(max.value.split(',').join(''));
+        if (min && max) {
+            var minNumber = Number(min.split(',').join(''));
+            var maxNumber = Number(max.split(',').join(''));
             return minNumber > maxNumber;
         }
         /* -- disable button if one field is empty --*/
-        return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+        return (min && !max) || (max && !min);
     };
     /* -- disables button if input contains non-number --*/
     CreateNewComponent.prototype.allNumber = function (input) {
         return input.every(function (element) {
-            if (element.value) {
-                var numberified = Number(element.value.split(',').join(''));
+            if (element) {
+                var numberified = Number(element.split(',').join(''));
             }
-            return !element.value || !isNaN(numberified);
+            return !element || !isNaN(numberified);
         });
     };
     CreateNewComponent.prototype.disableButton = function () {
         if (this.projectForm) {
-            var form = this.projectForm.form;
-            var headline = form.get('headline');
-            var check_size_min = form.get('target_check_size_min');
-            var check_size_max = form.get('target_check_size_max');
-            var revenue_min = form.get('target_revenue_min');
-            var revenue_max = form.get('target_revenue_max');
-            var ebitda_min = form.get('target_ebitda_min');
-            var ebitda_max = form.get('target_ebitda_max');
+            var form = this.projectForm.form.value;
+            var headline = form.headline;
+            var check_size_min = form.target_check_size_min;
+            var check_size_max = form.target_check_size_max;
+            var revenue_min = form.target_revenue_min;
+            var revenue_max = form.target_revenue_max;
+            var ebitda_min = form.target_ebitda_min;
+            var ebitda_max = form.target_ebitda_max;
             var dirty = [];
             for (var field in form) {
                 if (field !== 'headline') {
                     dirty.push(form[field]);
                 }
             }
-            var headlineInvalid = !headline.value || headline.value.length === 0;
+            var headlineInvalid = !headline;
             var minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
             /* -- headline is required --*/
-            if (!headline.value || headline.value.length === 0) {
+            if (headlineInvalid) {
                 return true;
             }
             if (minMaxFail) {

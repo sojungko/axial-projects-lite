@@ -87,28 +87,28 @@ export class CreateNewComponent {
 
   minMaxControl(min: any, max: any) {
     /* -- disable button if min > max -- */
-    if (min.value && max.value) {
-      const minNumber = Number(min.value.split(',').join(''));
-      const maxNumber = Number(max.value.split(',').join(''));
+    if (min && max) {
+      const minNumber = Number(min.split(',').join(''));
+      const maxNumber = Number(max.split(',').join(''));
       return minNumber > maxNumber;
     }
     /* -- disable button if one field is empty --*/
-    return min.value && (max.pristine || !max.value) || max.value && (min.pristine || !min.value);
+    return (min && !max) || (max && !min);
   }
 
   /* -- disables button if input contains non-number --*/  
   allNumber(input: Array<any>) {
     return input.every((element: any) => {
-      if (element.value) {
-        var numberified = Number(element.value.split(',').join(''));
+      if (element) {
+        var numberified = Number(element.split(',').join(''));
       }
-      return !element.value || !isNaN(numberified);
+      return !element || !isNaN(numberified);
     });
   }
 
   disableButton() {
     if (this.projectForm) {
-      const form = this.projectForm.form.controls;
+      const form = this.projectForm.form.value;
       const headline = form.headline;
       const check_size_min = form.target_check_size_min;
       const check_size_max = form.target_check_size_max;
@@ -122,10 +122,10 @@ export class CreateNewComponent {
           dirty.push(form[field]);
         }
       }
-      const headlineInvalid = !headline.value || headline.value.length === 0;
+      const headlineInvalid = !headline;
       const minMaxFail = this.minMaxControl(check_size_min, check_size_max) || this.minMaxControl(revenue_min, revenue_max) || this.minMaxControl(ebitda_min, ebitda_max);
       /* -- headline is required --*/
-      if (!headline.value || headline.value.length === 0) {
+      if (headlineInvalid) {
         return true;
       }
       if (minMaxFail) {
